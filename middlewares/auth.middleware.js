@@ -17,7 +17,6 @@ export const createUserMiddleWare = async (req, res, next) => {
   }
 }
 
-
 export const loginUserMiddleWare = async (req, res, next) => {
   const { email, password } = req.body
   const user = await userModel.findOne({ email });
@@ -32,14 +31,14 @@ export const isLoggedIn = async (req, res, next) => {
     if (!token) {
       return res.status(401).send({
         success: false,
-        message: "Unauthorized! Please login."
+        message: "Unauthorized! Please login first."
       });
     }
-    const decoded = jwt.verify(token, process.env.SECRET_TOKEN);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next()
   } catch (error) {
-
+     res.status(500).send({message:"something went wrong!!",success:false,error})
   }
 }
 

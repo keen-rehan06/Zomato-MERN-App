@@ -93,7 +93,7 @@ export const loginPartner = async(req,res) => {
 export const logOutPartner = async(req,res) => {
    try {
      res.clearCookie("token");
-     res.status(200).send({message:"User Logout Successfully!!",success:true})
+     res.status(200).send({ message:"User Logout Successfully!!",})
    } catch (error) {
     return res.send("Logout failed")
    }
