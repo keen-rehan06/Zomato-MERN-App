@@ -1,7 +1,7 @@
 import jwt from  "jsonwebtoken"
 
-const generateTokens = (user) => {
-    jwt.sign({email:user.email,id:user._id},process.env.SECRET_TOKEN);
+const generateToken = (user) => {
+  return jwt.sign({ id: user._id, email: user.email }, process.env.SECRET_TOKEN);
 }
 
-export default generateTokens;
+export default generateToken;

@@ -56,5 +56,13 @@ export const createPartnerMiddleWare = async (req, res, next) => {
 }
 
 export const LoginPartnerMiddleWare = async (req,res,next) => {
-  
+  try {
+    const {email,password} = req.body;
+  const partner = await partnerModel.findOne({email});
+   if(!partner) return res.status(401).send({message:"User doesn't Exist",success:false});
+   if(!email || !password) return res.status(500).send({message:"All fields are required!",success:false})
+  next()
+  } catch (error) {
+  return res.status(500).send({message:"Failed to Login!!",success:false});  
+  }
 }

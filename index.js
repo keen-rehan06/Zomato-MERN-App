@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
 import dbConnect from "./db/db.js"
 import userRoute from "./routes/user.routes.js"
+import partnerRoute from "./routes/partner.routes.js"
 
 dotenv.config("./.env");
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use("/user",userRoute)
+app.use("/partner",partnerRoute)
 
 app.get("/",function(req,res){
     res.send("Hello world!");
