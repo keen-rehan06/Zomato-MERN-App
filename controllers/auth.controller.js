@@ -1,6 +1,8 @@
 import userModel from "../models/user.model.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken";
+import generateTokens from "../config/generateToken.js";
+
 
 export const createUser = async (req,res) => {
      try {
@@ -15,7 +17,7 @@ export const createUser = async (req,res) => {
     const newUser = await userModel
    .findById(user._id)
    .select("-password");
-    const token = jwt.sign({id:user._id,email:user.email},process.env.SECRET_TOKEN);
+    const token = generateTokens(user);
     res.cookie("token",token);
     res.status(201).send({message:"User created Successfully!",data:newUser })
 
@@ -34,9 +36,25 @@ export const loginUser = async (req,res) => {
         if(err) return res.status(500).send({message:"Something went wrong!!",err});
         if(!result) return res.status(500).send({message:"Incorrect password!!"})
          
-        const token = jwt.sign({email:user.email,id:user._id},process.env.SECRET_TOKEN);
+        const token = generateTokens(user);
         res.cookie("token",token);
         res.status(200).send({message:"User Logged In Successfully!",data:newUser})    
     })
 }
 
+export const logoutUser = async (req,res) => {
+    res.clearCookie("token")
+    res.status(200).send({message:"User Logout Successfully!!"})
+}
+
+export const createPartner = async(req,res) => {
+
+}
+
+export const loginPartner = async(req,res) => {
+
+}
+
+export const logOutPartner = async(req,res) => {
+
+}
