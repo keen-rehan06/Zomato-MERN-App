@@ -8,7 +8,7 @@ import userRoute from "./routes/user.routes.js"
 import partnerRoute from "./routes/partner.routes.js"
 import foodRoute from "./routes/food.routes.js"
 
-dotenv.config();
+dotenv.config("./.env");
 
 (async()=>{
     try {
