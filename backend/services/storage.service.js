@@ -14,7 +14,6 @@
              file,
              fileName
         });
-        console.log("Upload Success:", result);
         return result;
     } catch (error) {
         console.error("Image upload failed:", error.response?.data || error.message || error);

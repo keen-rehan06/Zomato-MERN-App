@@ -65,3 +65,4 @@ export const LoginPartnerMiddleWare = async (req,res,next) => {
   return res.status(500).send({message:"Failed to Login!!",success:false});  
   }
 }
+
