@@ -1,10 +1,10 @@
 import './App.css'
-
+import AppRoutes from "./routes/AppRoutes.jsx";
 function App() {
-
-
   return (
-   <div></div>
+   <div>
+    <AppRoutes/>
+   </div>
   )
 }
 
